@@ -13,9 +13,6 @@ app.get('/api/profile', (req, res) => {
     res.json(mockProfile)
 })
 
-app.get('/', (req, res) => {
-    res.send(`HTML is under construction..`)
-});
-
+app.use(express.static('public'))
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
