@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
@@ -7,6 +9,10 @@ const router = require('./routes');
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
+const db = require('./config/connection')
+
 app.use('/', router);
 
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+db.once('open', () => {
+    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
+})
