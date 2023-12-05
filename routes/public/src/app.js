@@ -17,3 +17,31 @@ const addDisplay = (name, endorsedCount) => {
                     
     `
 }
+
+btnProfile.addEventListener("click", (event) => {
+    event.preventDefault()
+    
+    const profileName = profileNameEL.value;
+
+    if(profileName.length > 0) {
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        fetch("/api/profile", {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify({
+                name: profileName,
+                endorsedCount: 500
+            }),
+        })
+        .then(response => response.json())
+        .then(newProfile => {
+            addDisplay(newProfile.name, 300)
+        })
+
+    } else {
+        alert(`Profile name is required..`)
+    }
+
+})
