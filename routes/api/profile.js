@@ -1,20 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const mockProfile = {
-    name: "Daniel",
-    endorsedCount: 600
-}
+const { Profile } = require('../../models')
 
 //  /api/profile
-router.get('/', (req, res) => {
-    res.json(mockProfile)
+router.get('/', async (req, res) => {
+    const profiles = await Profile.find({})
+    res.json(profiles)
 })
 
 //POST
-router.post('/', (req, res) => {
-    const newProfile = req.body;
-    newProfile.id = "asdf1234";
+router.post('/', async (req, res) => {
+    const newProfile = await Profile.create(req.body);
     res.json(newProfile)
 })
 

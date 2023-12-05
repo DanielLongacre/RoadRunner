@@ -2,6 +2,14 @@ let profileListEL = document.getElementById("profile-list");
 let btnProfile = document.getElementById("btnProfile");
 let profileNameEL = document.getElementById("profile-name");
 
+const loadProfiles = () => {
+    fetch("/api/profile")
+        .then(response => response.json())
+        .then(profiles => {
+            profiles.forEach(profile => addDisplay(profile.name, profile.endorsedCount))
+        })
+}
+
 const addDisplay = (name, endorsedCount) => {
     profileListEL.innerHTML += `
     <div class="col-12 col-xl-6">
@@ -45,3 +53,5 @@ btnProfile.addEventListener("click", (event) => {
     }
 
 })
+
+loadProfiles();
