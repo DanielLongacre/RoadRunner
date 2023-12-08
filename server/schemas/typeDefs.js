@@ -21,13 +21,14 @@ const typeDefs = `
     type Query {
         profiles: [Profile]!
         profile(profileId: ID!): Profile
-        run
     }
 
     type Mutation {
-        addProfile(name: String!): Profile
+        addProfile(name: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
         removeProfile(profileId: ID!): Profile
-        addRun(distance: Int!, time: Int!): Run
+        addSkill(profileId: ID!, skill: String!): Profile
+        removeSkill(profileId: ID!, skill: String!): Profile
     }
 `;
 

@@ -19,10 +19,10 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken) {
+  login(idToken, userId) {
     // Saves user token to localStorage and reloads the application for logged in status to take effect
     localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
+    window.location.assign(`/profiles/${userId}`);
   }
 
   logout() {
