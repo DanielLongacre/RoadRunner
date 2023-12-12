@@ -1,14 +1,16 @@
-const { Profile } = require('../models');
+const { Profile, Run } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
         profiles: async () => {
-            return Profile.find();
+            return await Profile.find().populate('runs');
         },
-
+        // runs: async(parent, { runId }) => {
+        //   return await Profile.find({_id: runId});
+        // },
         profile: async(parent, { profileId }) => {
-            return Profile.findOne({_id: profileId });
+            return await Profile.findOne({_id: profileId }).populate('runs');
         },
     },
 
@@ -35,27 +37,31 @@ const resolvers = {
             const token = signToken(profile);
             return { token, profile };
           },
-        addSkill: async (parent, { profileId, skill }) => {
-            return Profile.findOneAndUpdate(
+        addRun: async (parent, { profileId, time, distance }) => {
+            const logRun = await Run.create({ profileId, time, distance });
+            await Profile.findOneAndUpdate(
               { _id: profileId },
               {
-                $addToSet: { skills: skill },
+                $addToSet: { runs: logRun },
               },
               {
                 new: true,
                 runValidators: true,
               }
             );
+            return logRun;
           },
         removeProfile: async(parent, { profileId }) => {
             return Profile.findOneAndDelete({_id: profileId });
         },
-        removeSkill: async (parent, { profileId, skill }) => {
-          return Profile.findOneAndUpdate(
+        removeRun: async (parent, { profileId, runId }) => {
+          const delRun = await Run.findOneAndDelete({ _id: runId });
+          await Profile.findOneAndUpdate(
             { _id: profileId },
-            { $pull: { skills: skill } },
+            { $pull: { runs: runId } },
             { new: true }
           );
+          return delRun;
         },
     },
 };

@@ -10,6 +10,10 @@ const runSchema = new Schema({
         type: Number,
         required: true,
         trim: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 

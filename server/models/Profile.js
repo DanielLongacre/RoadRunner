@@ -25,12 +25,6 @@ const profileSchema = new Schema({
           ref: "Run",
         },
       ],
-      // friends: [
-      //   {
-      //     type: Schema.Types.ObjectId,
-      //     ref: "Profile"
-      //   }
-      // ]
 });
 
 profileSchema.pre('save', async function (next) {

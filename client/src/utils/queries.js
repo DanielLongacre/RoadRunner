@@ -5,17 +5,23 @@ export const QUERY_PROFILES = gql`
     profiles {
       _id
       name
-      skills
+      runs
     }
   }
 `;
 
 export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
+query Query($profileId: ID!) {
+  profile(profileId: $profileId) {
+    _id
+    email
+    name
+    runs {
       _id
-      name
-      skills
+      distance
+      time
+      date
     }
   }
+}
 `;

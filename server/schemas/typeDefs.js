@@ -4,7 +4,7 @@ const typeDefs = `
         name: String
         email: String
         password: String
-        runs: [String]!
+        runs: [Run]
     }
 
     type Auth {
@@ -14,21 +14,23 @@ const typeDefs = `
 
     type Run {
         _id: ID
-        distance: Int
-        time: Int
+        distance: Int!
+        time: Int!
+        date: String
     }
 
     type Query {
         profiles: [Profile]!
         profile(profileId: ID!): Profile
+        runs: [Run]
     }
 
     type Mutation {
         addProfile(name: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         removeProfile(profileId: ID!): Profile
-        addSkill(profileId: ID!, skill: String!): Profile
-        removeSkill(profileId: ID!, skill: String!): Profile
+        addRun(profileId: ID!, distance: Int!, time: Int!): Run
+        removeRun(profileId: ID!, runId: ID!): Run
     }
 `;
 

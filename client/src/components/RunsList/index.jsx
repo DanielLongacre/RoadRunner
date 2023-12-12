@@ -1,17 +1,17 @@
-const SkillsList = ({ skills }) => {
-  if (!skills.length) {
-    return <h3>No Skills Yet</h3>;
+const RunsList = ({ runs }) => {
+  if (!runs.length) {
+    return <h3>No Runs Yet</h3>;
   }
 
   return (
     <div>
       <div className="flex-row justify-space-between my-4">
-        {skills &&
-          skills.map((skill) => (
-            <div key={skill} className="col-12 col-xl-6">
+        {runs &&
+          runs.map((run) => (
+            <div key={run} className="col-12 col-xl-6">
               <div className="card mb-3">
                 <h4 className="card-header bg-dark text-light p-2 m-0">
-                  {skill} <br />
+                  {run} <br />
                 </h4>
               </div>
             </div>
@@ -21,4 +21,4 @@ const SkillsList = ({ skills }) => {
   );
 };
 
-export default SkillsList;
+export default RunsList;
