@@ -11,12 +11,12 @@ const RunForm = ({ profileId }) => {
 
   const [addRun, { error }] = useMutation(ADD_RUN);
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event, profileId, distance, time) => {
     event.preventDefault();
 
     try {
       const data = await addRun({
-        variables: { profileId, run },
+        variables: { _id: profileId, distance: distance, time: time },
       });
 
       setRun('');
@@ -36,8 +36,17 @@ const RunForm = ({ profileId }) => {
         >
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Log a run..."
-              value={run}
+              placeholder="Enter your distance"
+              value={run.distance}
+              className="form-input w-100"
+              onChange={(event) => setRun(event.target.value)}
+            />
+          </div>
+
+          <div className="col-12 col-lg-9">
+            <input
+              placeholder="Enter your time"
+              value={run.time}
               className="form-input w-100"
               onChange={(event) => setRun(event.target.value)}
             />

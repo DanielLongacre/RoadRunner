@@ -24,7 +24,7 @@ const Profile = () => {
         {profile.name}, here are all of your runs
       </h2>
 
-      {profile.runs?.length > 0 && <RunsList runs={profile.runs} />}
+      {/* {profile.runs?.length > 0 && <RunsList runs={profile.runs} />} */}
 
       <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <RunForm profileId={profile._id} />
