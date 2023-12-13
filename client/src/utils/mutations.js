@@ -15,10 +15,20 @@ export const ADD_PROFILE = gql`
 export const ADD_RUN = gql`
 mutation Mutation($profileId: ID!, $distance: Int!, $time: Int!) {
   addRun(profileId: $profileId, distance: $distance, time: $time) {
-    _id
     distance
     time
     date
+  }
+}
+`;
+
+export const REMOVE_RUN = gql`
+mutation Mutation($profileId: ID!, $runId: ID!) {
+  removeRun(profileId: $profileId, runId: $runId) {
+    date
+    distance
+    time
+    _id
   }
 }
 `;
