@@ -39,7 +39,7 @@ The following is a screenshot of the login page.
 
 The following is a screenshot of a profile page including previously logged runs.
 
-![Screenshot of Profile page including previously logged runs.](/client/src/assets/Screenshot%20(143).png)
+![Screenshot of Profile page including previously logged runs.](/client/src/assets/ProfileScreenshot.png)
 
 ## Deployed Site
 
