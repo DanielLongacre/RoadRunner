@@ -364,6 +364,11 @@ body {
     'Segoe UI Symbol';
   font-size: 16px;
   color: #1a1a1a;
+  background-color: #000000;
+  /* background-image: url(./assets/roadlines.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
 }
 
 h1,
@@ -375,10 +380,12 @@ h6 {
   font-family: 'JetBrains Mono', monospace;
   margin: 0 0 0.5rem;
   line-height: 1.25;
+  color: white;
 }
 
 h1 {
   font-size: 2.25rem;
+  color: orange;
 }
 
 h2 {
