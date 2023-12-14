@@ -11,15 +11,17 @@ import { QUERY_SINGLE_PROFILE } from '../utils/queries';
 const Profile = () => {
 
   const [addRun, { error }] = useMutation(ADD_RUN);
-  const [removeRun, { mistake }] = useMutation(REMOVE_RUN);
+  const [removeRun, { mistake }] = useMutation(REMOVE_RUN, {
+    refetchQueries: [{query:QUERY_SINGLE_PROFILE}]
+  });
   
   const addRunToProfile = async (run) => {
-    
+    console.log(run);
     try {
       const profileId = run.profileId
+      console.log(profileId);
       const distance = parseInt(run.distance)
       const time = parseInt(run.time)
-      console.log(profileId + distance + time);
       const {data} = await addRun({
         variables: { profileId, distance, time },
       });
@@ -32,11 +34,14 @@ const Profile = () => {
 
   const deleteRunFromProfile = async (run) => {
     const runId = run._id;
-    const profileId = profile.profileId;
+    const profileId = profile._id;
+    console.log(profileId)
+    console.log(runId);
     const data = await removeRun({
-      variable: { profileId, runId}
+      variables: { profileId, runId}
     });
     console.log(data);
+    window.location.reload();
   };
 
   const { profileId } = useParams();
@@ -71,7 +76,7 @@ const Profile = () => {
                   </h4>
                   <h4 className="card-header bg-dark text-light p-2 m-0">
                     Distance: {run.distance} miles <br/> Time: {run.time} minutes <br/> Miles Per Minute: {run.time/run.distance}
-                    <button className="bg-danger text-light ml-5" onClick={deleteRunFromProfile}>
+                    <button className="bg-danger text-light ml-5" onClick={() => deleteRunFromProfile(run)}>
                       Delete
                     </button>
                   </h4>
