@@ -9,8 +9,8 @@ import Auth from '../../utils/auth';
 const RunForm = ({ profileId, addRunToProfile }) => {
   const [run, setRun] = useState({
     profileId: profileId,
-    distance: 0,
-    time: 0
+    // distance: 0,
+    // time: 0
   });
 
   const handleChange = (event) => {
@@ -19,24 +19,6 @@ const RunForm = ({ profileId, addRunToProfile }) => {
   }
 
   const [addRun, { error }] = useMutation(ADD_RUN);
-
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
-    
-  //   try {
-  //     const profileId = run.profileId
-  //     const distance = parseInt(run.distance)
-  //     const time = parseInt(run.time)
-  //     console.log(profileId + distance + time);
-  //     const {data} = await addRun({
-  //       variables: { profileId, distance, time },
-  //     });
-  //     console.log(data);
-      
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   return (
     <div>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const ProfileList = ({ profiles, title }) => {
   if (!profiles.length) {
-    return <h3>No Runs Logged</h3>;
+    return <h3>Log in to see your runs</h3>;
   }
 
   return (

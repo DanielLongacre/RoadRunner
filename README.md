@@ -25,7 +25,21 @@ THEN I am taken back to the main login/signup page
 
 ## Mock Up
 
+The following is a screenshot of the home page.
 
+![Screenshot of the home page.](/client/src/assets/HomeScreen.png)
+
+The following is a screeenshot of the signup page.
+
+![Screenshot of the signup page](./client/src/assets/Signup.png)
+
+The following is a screenshot of the login page.
+
+![Screenshot of the login page](./client/src/assets/Login.png)
+
+The following is a screenshot of a profile page including previously logged runs.
+
+![Screenshot of Profile page including previously logged runs.](/client/src/assets/Screenshot%20(143).png)
 
 ## Deployed Site
 

@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-// import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_RUN } from '../utils/mutations';
 import { REMOVE_RUN } from '../utils/mutations';
@@ -12,7 +11,7 @@ import { QUERY_SINGLE_PROFILE } from '../utils/queries';
 const Profile = () => {
 
   const [addRun, { error }] = useMutation(ADD_RUN);
-  const [deleteRun, { mistake }] = useMutation(REMOVE_RUN);
+  const [removeRun, { mistake }] = useMutation(REMOVE_RUN);
   
   const addRunToProfile = async (run) => {
     
@@ -33,7 +32,8 @@ const Profile = () => {
 
   const deleteRunFromProfile = async (run) => {
     const runId = run._id;
-    const data = await deleteRun({
+    const profileId = profile.profileId;
+    const data = await removeRun({
       variable: { profileId, runId}
     });
     console.log(data);
@@ -44,10 +44,10 @@ const Profile = () => {
   const { loading, data } = useQuery(QUERY_SINGLE_PROFILE, {
     variables: { profileId: profileId },
   });
-  console.log(data);
+  
   const profile = data?.profile || {};
   const runs = profile.runs;
-  console.log(profile);
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -59,7 +59,8 @@ const Profile = () => {
     
       <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <RunForm profileId={profile._id} addRunToProfile={addRunToProfile} />
-        
+        <br /><br /><br />
+        <h3>Logged Runs:</h3>
         <div className="flex-row justify-space-between my-4">
           {runs &&
             runs.map((run, index) => (
@@ -69,8 +70,8 @@ const Profile = () => {
                     Date: {run.date}
                   </h4>
                   <h4 className="card-header bg-dark text-light p-2 m-0">
-                    Distance: {run.distance} miles / Time: {run.time} minutes
-                    <button className="bg-danger text-light ml-5" onSubmit={deleteRunFromProfile}>
+                    Distance: {run.distance} miles <br/> Time: {run.time} minutes <br/> Miles Per Minute: {run.time/run.distance}
+                    <button className="bg-danger text-light ml-5" onClick={deleteRunFromProfile}>
                       Delete
                     </button>
                   </h4>
